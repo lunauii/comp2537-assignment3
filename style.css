@@ -1,42 +1,175 @@
+:root {
+  --lavender-light: #F5F2FA;
+  --lavender-muted: #EAE5F8;
+  --lavender-base: #C8BFE7;
+  --lavender-dark: #A079D0;
+  --lavender-pressed: #8860B8;
+  --lavender-pressed-darker: #774CA0;
+  --accent-butterfly: #D4C0EB;
+  --text-primary: #4E3C78;
+  --text-title: #7F52AC;
+  --gradient-pink: #FFB3DE;
+  --gradient-purple: #D4C0EB;
+}
+
+.navbar-brand {
+  background-color: --text-title !important;
+}
+
+#game-board {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+#game-board > .mb-3 {
+  margin-bottom: 0.25rem !important;
+}
+
 body {
-  margin: 0px;
+  background-color: var(--lavender-light);
+  color:            var(--text-primary);
 }
 
-#game_grid {
-  border: 2px tomato solid;
-  width: 600px;
-  height: 400px;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-
-.card {
-  width: 33.3%;
+.navbar {
+  background-color: var(--lavender-muted) !important;
   position: relative;
-  transition: transform 1s;
-  perspective: 1000px;
-  transform-style: preserve-3d;
 }
-
-
-img {
-  width: 100%
-}
-
-.front_face,
-.back_face {
+.navbar::after {
+  content: "";
   position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gradient-pink), var(--gradient-purple), var(--gradient-pink));
+  background-size: 200% 100%;
+  animation: gradient-marquee 4s linear infinite;
+}
+@keyframes gradient-marquee {
+  0% { background-position: 0% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.form-select {
+  border-color: var(--lavender-dark);
+}
+.form-select:focus {
+  border-color: var(--lavender-dark);
+  box-shadow: none;
+}
+
+.btn {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-primary {
+  background-color: var(--lavender-dark) !important;
+  border-color: var(--lavender-dark) !important;
+}
+.btn-primary:hover {
+  background-color: var(--lavender-pressed) !important;
+  border-color: var(--lavender-pressed) !important;
+}
+.btn-primary:active {
+  background-color: var(--lavender-pressed-darker) !important;
+  border-color: var(--lavender-pressed-darker) !important;
+}
+
+.btn-secondary {
+  background-color: var(--lavender-muted) !important;
+  border-color: var(--lavender-muted) !important;
+  color: var(--text-primary) !important;
+}
+.btn-secondary:hover {
+  background-color: var(--lavender-base) !important;
+  border-color: var(--lavender-base) !important;
+}
+.btn-secondary:focus,
+.btn-secondary:active {
+  background-color: var(--lavender-base) !important;
+  border-color: var(--lavender-base) !important;
+  box-shadow: none !important;
+}
+.btn-secondary:disabled {
+  opacity: 0.6;
+}
+
+.btn-outline-secondary.nav-underline {
+  color: var(--text-primary) !important;
+  background: transparent !important;
+  border: none !important;
+}
+.btn-outline-secondary.nav-underline:hover,
+.btn-outline-secondary.nav-underline:focus,
+.btn-outline-secondary.nav-underline:active {
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+  box-shadow: none !important;
+}
+
+.nav-underline {
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-butterfly);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+.nav-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Flip-card animations */
+.flip-card {
+  perspective: 1000px;
+  width: 80%;
+  aspect-ratio: 1;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   backface-visibility: hidden;
 }
-
-
-.flip {
+.flip-card-back {
   transform: rotateY(180deg);
 }
 
-
-.front_face {
-  transform: rotateY(180deg);
+body.dark-mode {
+  --lavender-light:         #1a1a2e;
+  --lavender-muted:         #2a283a;
+  --lavender-base:          #352f4a;
+  --lavender-dark:          #423b57;
+  --lavender-pressed:       #504668;
+  --lavender-pressed-darker:#362f4c;
+  --accent-butterfly:       #9b5de5;
+  --text-primary:           #e0dfee;
+  --text-title:             #f0f0f5;
+  --gradient-pink:          #7f5af0;
+  --gradient-purple:        #4c4cff;
 }
+
